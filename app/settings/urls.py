@@ -18,8 +18,11 @@ from django.contrib import admin
 from django.urls import path
 
 from main.views import hello_world
+from currency.views import list_rates, contact_form
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('hello-world/', hello_world, )
+    path('hello-world/', hello_world),
+    path('rate/list', list_rates),
+    path('contactus', contact_form),
 ]
