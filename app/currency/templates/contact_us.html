@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block style %}
+        table, th, td
+        {border: 1px solid black}
+{% endblock style %}
+
+{% block title %}
+     ContactUs
+{% endblock title %}
+{% block content %}
+
+<table>
+    <thead>
+        <th>ID</th>
+        <th>Email</th>
+        <th>Subject</th>
+        <th>Massage</th>
+    </thead>
+    <tbody>
+    {% for client in contactus %}
+    <tr>
+        <td>{{client.id}}</td>
+        <td>{{client.email_from}}</td>
+        <td>{{client.subject}}</td>
+        <td>{{client.message}}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}
