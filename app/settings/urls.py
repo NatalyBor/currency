@@ -18,11 +18,18 @@ from django.contrib import admin
 from django.urls import path
 
 from main.views import hello_world
-from currency.views import list_rates, contact_form
+from currency.views import list_rates, contact_form, rates_create, rates_update, rates_delete, rates_details, source_list, source_create, source_update
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('hello-world/', hello_world),
     path('rate/list', list_rates),
     path('contactus', contact_form),
+    path('rate/create', rates_create),
+    path('rate/update/<int:pk>/', rates_update),
+    path('rate/delete/<int:pk>/', rates_delete),
+    path('rate/details/<int:pk>/', rates_details),
+    path('source/list', source_list),
+    path('source/create', source_create),
+    path('source/update/<int:pk>/', source_update),
 ]
