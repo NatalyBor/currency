@@ -7,17 +7,17 @@ class RateForm(forms.ModelForm):
     class Meta:
         model = Rate
         fields = (
-			'buy',
-			'sell',
-			'source',
-			'currency',
-		)
+            'buy',
+            'sell',
+            'source',
+            'currency',
+        )
 
 
 class SourceForm(forms.ModelForm):
-	class Meta:
-		model = Source
-		fields = (
-			'source_url',
-			'name',
-		)
+    class Meta:
+        model = Source
+        fields = (
+            'source_url',
+            'name',
+        )
