@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse, HttpResponseRedirect, Http404
+from django.http import HttpResponseRedirect
+# from django.http import HttpResponse, HttpResponseRedirect, Http404
 
 from currency.models import Rate, ContactUs, Source
 from currency.forms import RateForm, SourceForm
@@ -20,6 +21,8 @@ def list_rates(request):
 # return HttpResponse(str(result))
 
 # get details
+
+
 def rates_details(request, pk):
     rate = get_object_or_404(Rate, pk=pk)
 
@@ -28,6 +31,7 @@ def rates_details(request, pk):
     }
 
     return render(request, 'rates_details.html', context)
+
 
 def rates_create(request):
     if request.method == 'POST':
@@ -65,6 +69,7 @@ def rates_update(request, pk):
 
     return render(request, 'rates_update.html', context)
 
+
 def rates_delete(request, pk):
     rate = get_object_or_404(Rate, pk=pk)
 
@@ -93,6 +98,7 @@ def contact_form(request):
     }
 
     return render(request, 'contact_us.html', context)
+
 
 # source
 def source_list(request):
@@ -136,6 +142,4 @@ def source_update(request, pk):
     }
 
     return render(request, 'source_update.html', context)
-
-
 
