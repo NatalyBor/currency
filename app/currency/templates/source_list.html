@@ -19,12 +19,13 @@
         <th>Update</th>
     </thead>
     <tbody>
-    {% for source in sources %}
+    {% for source in object_list %}
     <tr>
         <td>{{ source.id }}</td>
         <td>{{ source.source_url }}</td>
         <td>{{ source.name }}</td>
-        <td><a href="/source/update/{{ source.id  }}/">UPDATE</a></td>
+        <td><a href="{% url 'currency:source-update' source.id %}">UPDATE</a></td>
+
     </tr>
     {% endfor %}
     </tbody>
