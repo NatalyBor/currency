@@ -10,7 +10,6 @@ from currency.forms import RateForm, SourceForm
 
 class RateListView(ListView):
     template_name = 'rates_list.html'
-    # model = Rate
     queryset = Rate.objects.all()
 
 
