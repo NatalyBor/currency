@@ -1,6 +1,9 @@
 Django==4.1.7
 ipython
 django_extensions==3.2.1
+django-admin-rangefilter
+django-import-export
+
 
 #flake8
 flake8
