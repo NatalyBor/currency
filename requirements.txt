@@ -6,3 +6,4 @@ django_extensions==3.2.1
 flake8
 flake8-builtins
 flake8-print
+django_debug_toolbar
