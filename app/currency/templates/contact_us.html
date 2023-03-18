@@ -13,6 +13,8 @@
 <table>
     <thead>
         <th>ID</th>
+        <th>Created</th>
+        <th>Name</th>
         <th>Email</th>
         <th>Subject</th>
         <th>Massage</th>
@@ -21,7 +23,9 @@
     {% for client in object_list %}
     <tr>
         <td>{{client.id}}</td>
-        <td>{{client.email_from}}</td>
+        <td>{{client.created}}</td>
+        <td>{{client.name}}</td>
+        <td>{{client.email}}</td>
         <td>{{client.subject}}</td>
         <td>{{client.message}}</td>
     </tr>

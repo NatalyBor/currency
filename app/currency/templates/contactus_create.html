@@ -1,0 +1,13 @@
+{% block title %}
+      Create Contact Us
+{% endblock title %}
+
+{% block content %}
+    Create Contact Us Form
+
+    <form method="post">
+        {%  csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+{% endblock content %}
