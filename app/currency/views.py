@@ -6,7 +6,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 # from django.contrib.auth.views import PasswordContextMixin
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView, TemplateView
-# from django.http import HttpResponseRedirect
 # from django.http import HttpResponse, HttpResponseRedirect, Http404
 
 from currency.models import Rate, ContactUs, Source
