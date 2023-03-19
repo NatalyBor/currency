@@ -1,4 +1,9 @@
 # from django.shortcuts import render, get_object_or_404
+from django.contrib.auth import get_user_model
+# from django.contrib.auth.forms import PasswordResetForm
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+# from django.contrib.auth.tokens import default_token_generator
+# from django.contrib.auth.views import PasswordContextMixin
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView, TemplateView
 # from django.http import HttpResponseRedirect
@@ -19,9 +24,12 @@ class RateListView(ListView):
         return result
 
 
-class RateDetailView(DetailView):
+class RateDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
     queryset = Rate.objects.all()
     template_name = 'rates_details.html'
+
+    def test_func(self):
+        return self.request.user.is_authenticated
 
     # def dispatch(self, request, *args, **kwargs):
     #     print('before')
@@ -39,17 +47,23 @@ class RateCreateView(CreateView):
     success_url = reverse_lazy('currency:rate-list')
 
 
-class RateUpdateView(UpdateView):
+class RateUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     form_class = RateForm
     template_name = 'rates_update.html'
     success_url = reverse_lazy('currency:rate-list')
     queryset = Rate.objects.all()
 
+    def test_func(self):
+        return self.request.user.is_superuser
 
-class RateDeleteView(DeleteView):
+
+class RateDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     queryset = Rate.objects.all()
     template_name = 'rates_delete.html'
     success_url = reverse_lazy('currency:rate-list')
+
+    def test_func(self):
+        return self.request.user.is_superuser
 
 
 class IndexView(TemplateView):
@@ -117,9 +131,25 @@ class SourceUpdateView(UpdateView):
     queryset = Source.objects.all()
 
 
+class ProfileView(LoginRequiredMixin, UpdateView):
+    template_name = 'registration/profile.html'
+    success_url = reverse_lazy('index')
+    # model = get_user_model()
+    queryset = get_user_model().objects.all()
+    fields = (
+        'first_name',
+        'last_name',
+    )
+
+    def get_object(self, queryset=None):
+        return self.request.user
+    # def get_queryset(self):
+    #     queryset = super().get_queryset()
+    #     queryset = queryset.filter(id=self.request.user.id)
+    #     return queryset
+
 # def list_rates(request):
 #     rates = Rate.objects.all()
-#
 #     context = {
 #         'rates': rates
 #     }
