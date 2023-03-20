@@ -179,7 +179,6 @@ class ProfileView(LoginRequiredMixin, UpdateView):
 #             return HttpResponseRedirect('/rate/list')
 #     elif request.method == 'GET':
 #         form = RateForm()
-#
 #     context = {
 #         'form': form
 #     }
@@ -199,7 +198,6 @@ class ProfileView(LoginRequiredMixin, UpdateView):
 #         # except Rate.DoesNotExist:
 #         #     raise Http404('Rate does not exist')
 #         form = RateForm(instance=rate)
-#
 #     context = {
 #         'form': form
 #     }
