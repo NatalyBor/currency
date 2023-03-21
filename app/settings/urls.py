@@ -1,7 +1,7 @@
-from django.contrib import admin, auth
-from django.contrib.auth import views
-from django.contrib.auth.views import PasswordResetView
-from django.urls import path, include, reverse_lazy
+from django.contrib import admin
+# from django.contrib.auth import views
+# from django.contrib.auth.views import PasswordResetView
+from django.urls import path, include
 from django.contrib.auth import views as auth_views
 # from .views import password_reset_request
 
