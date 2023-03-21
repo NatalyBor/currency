@@ -142,11 +142,11 @@ class ProfileView(LoginRequiredMixin, UpdateView):
 
     def get_object(self, queryset=None):
         return self.request.user
+
     # def get_queryset(self):
     #     queryset = super().get_queryset()
     #     queryset = queryset.filter(id=self.request.user.id)
     #     return queryset
-
 # def list_rates(request):
 #     rates = Rate.objects.all()
 #     context = {
@@ -184,7 +184,6 @@ class ProfileView(LoginRequiredMixin, UpdateView):
 #     }
 #
 #     return render(request, 'rates_create.html', context)
-
 # def rates_update(request, pk):
 #     rate = get_object_or_404(Rate, pk=pk)
 #     if request.method == 'POST':
@@ -272,5 +271,4 @@ class ProfileView(LoginRequiredMixin, UpdateView):
 #     context = {
 #         'form': form
 #     }
-#
 #     return render(request, 'source_update.html', context)
