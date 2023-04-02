@@ -52,7 +52,7 @@ class SourceAdmin(ImportExportModelAdmin):
 class ContactUsAdmin(ImportExportModelAdmin):
     list_display = (
         'id',
-        'email_from',
+        'email',
         'subject',
         'message',
     )

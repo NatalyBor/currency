@@ -12,10 +12,25 @@ class RateListView(ListView):
     template_name = 'rates_list.html'
     queryset = Rate.objects.all()
 
+    def dispatch(self, request, *args, **kwargs):
+        # print('before in view')
+        result = super().dispatch(request, *args, **kwargs)
+        # print('after in view')
+        return result
+
 
 class RateDetailView(DetailView):
     queryset = Rate.objects.all()
     template_name = 'rates_details.html'
+
+    # def dispatch(self, request, *args, **kwargs):
+    #     print('before')
+    #     start = time()
+    #     result = super().dispatch(request, *args, **kwargs)
+    #     print('after')
+    #     end = time()
+    #     print(f'time: {end - start}')
+    #     return result
 
 
 class RateCreateView(CreateView):
@@ -44,6 +59,44 @@ class IndexView(TemplateView):
 class ContactListView(ListView):
     template_name = 'contact_us.html'
     queryset = ContactUs.objects.all()
+
+
+class ContactUsCreateView(CreateView):
+    template_name = 'contactus_create.html'
+    success_url = reverse_lazy('index')
+    model = ContactUs
+    fields = (
+        'created',
+        'name',
+        'email',
+        'subject',
+        'message',
+    )
+
+    def _send_mail(self):
+        # cleaned_data = form.cleaned_data
+        subject = 'User ContactUs'
+        recipient = 'support@example.com'
+        message = f'''
+            Request from: {self.object.name},
+            Reply to email: {self.object.email},
+            Subject: {self.object.subject},
+            Body: {self.object.message},
+        '''
+        from django.core.mail import send_mail
+
+        send_mail(
+            subject,
+            message,
+            recipient,
+            [recipient],
+            fail_silently=False,
+        )
+
+    def form_valid(self, form):
+        redirect = super().form_valid(form)
+        self._send_mail()
+        return redirect
 
 
 class SourceListView(ListView):
