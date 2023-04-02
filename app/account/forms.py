@@ -42,10 +42,10 @@ class UserSignUpForm(forms.ModelForm):
 
     def _send_email(self):
         from django.core.mail import send_mail
-        subject ='Thank you for sign up!'
+        subject = 'Thank you for sign up!'
         path = reverse('account:activate', args=(self.instance.username,))
         message = f'''
-        {settings.HTTP_SCHEMA}://{settings.HOST}{path} 
+        {settings.HTTP_SCHEMA}://{settings.HOST}{path}
         '''
         send_mail(
             subject,
