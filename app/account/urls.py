@@ -1,0 +1,13 @@
+from django.urls import path
+# from currency.views import contact_form
+from account.views import (
+    UserSignUpView,
+    UserActivateView,
+)
+
+app_name = 'account'
+
+urlpatterns = [
+    path('signup/', UserSignUpView.as_view(), name='signup'),
+    path('activate/<uuid:username>/', UserActivateView.as_view(), name='activate'),
+]
