@@ -15,10 +15,10 @@ class UserSignUpForm(forms.ModelForm):
     class Meta:
         model = User
         fields = (
-			'email',
-			'password1',
-			'password2',
-		)
+            'email',
+            'password1',
+            'password2',
+        )
 
     def clean(self):
         cleaned_data = super().clean()
@@ -45,12 +45,12 @@ class UserSignUpForm(forms.ModelForm):
         subject ='Thank you for sign up!'
         path = reverse('account:activate', args=(self.instance.username,))
         message = f'''
-		{settings.HTTP_SCHEMA}://{settings.HOST}{path} 
-		'''
+        {settings.HTTP_SCHEMA}://{settings.HOST}{path} 
+        '''
         send_mail(
             subject,
-			message,
-			settings.DEFAULT_FROM_EMAIL,
-			[self.instance.email],
-			fail_silently=False,
-		)
+            message,
+            settings.DEFAULT_FROM_EMAIL,
+            [self.instance.email],
+            fail_silently=False,
+        )
