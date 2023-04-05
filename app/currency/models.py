@@ -34,10 +34,12 @@ class Source(models.Model):
 
     def __str__(self):
         return self.name
+
+
 class RequestResponseLog(models.Model):
     path = models.CharField(max_length=255)
     request_method = models.CharField(max_length=16)
-    # time = models.DateTimeField()
+#   time = models.DateTimeField()
     time = models.IntegerField()
 
     def __str__(self):
