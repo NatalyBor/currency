@@ -1,13 +1,18 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
 {% block title %}
       Create Contact Us
 {% endblock title %}
 
 {% block content %}
     Create Contact Us Form
+{% load crispy_forms_tags %}
 
-    <form method="post">
+        </form>
+    <form method="post" class="my-class">
         {%  csrf_token %}
-        {{ form.as_p }}
+        {{ form|crispy }}
         <button type="submit">Submit</button>
     </form>
 {% endblock content %}

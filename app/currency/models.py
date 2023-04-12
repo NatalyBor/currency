@@ -1,7 +1,5 @@
-from django.db import models
-
 from currency.choices import RateCurrencyChoices
-
+from django.db import models
 from django.utils import timezone
 
 
@@ -31,6 +29,9 @@ class ContactUs(models.Model):
 class Source(models.Model):
     source_url = models.CharField(max_length=255)
     name = models.CharField(max_length=64)
+
+    def logo_path(self):
+        return f"{self.name}.jpeg"
 
     def __str__(self):
         return self.name

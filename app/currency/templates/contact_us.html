@@ -2,7 +2,7 @@
 
 {% block style %}
         table, th, td
-        {border: 1px solid black}
+        {border: None}
 {% endblock style %}
 
 {% block title %}
@@ -10,14 +10,14 @@
 {% endblock title %}
 {% block content %}
 
-<table>
+<table class="table table-striped">
     <thead>
-        <th>ID</th>
-        <th>Created</th>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Subject</th>
-        <th>Massage</th>
+        <th scope="col">ID</th>
+        <th scope="col">Created</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Subject</th>
+        <th scope="col">Massage</th>
     </thead>
     <tbody>
     {% for client in object_list %}

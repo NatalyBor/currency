@@ -5,7 +5,10 @@ from django.urls import path, include
 from django.contrib.auth import views as auth_views
 # from .views import password_reset_request
 
-from currency.views import IndexView, ProfileView
+from currency.views import IndexView
+
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 urlpatterns = [
@@ -13,7 +16,7 @@ urlpatterns = [
 
     path('auth/', include('django.contrib.auth.urls')),
 
-    path('profile/', ProfileView.as_view(), name='profile'),
+
     path('account/', include('account.urls')),
 
     path('auth/login/password_reset/', auth_views.PasswordResetView.as_view(), name='password_reset'),
@@ -29,3 +32,5 @@ urlpatterns = [
 
     path('', IndexView.as_view()),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
