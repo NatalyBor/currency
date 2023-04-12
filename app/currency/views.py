@@ -15,7 +15,7 @@ from currency.forms import RateForm, SourceForm
 
 class RateListView(ListView):
     template_name = 'rates_list.html'
-    queryset = Rate.objects.all()
+    queryset = Rate.objects.all().select_related('source')
 
     def dispatch(self, request, *args, **kwargs):
         # print('before in view')
