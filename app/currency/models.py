@@ -10,7 +10,7 @@ class Rate(models.Model):
         default=RateCurrencyChoices.USD
     )  # usd, eur
     buy = models.DecimalField(max_digits=6, decimal_places=2)
-    sell = models.DecimalField(max_digits=6, decimal_places=2)
+    sale = models.DecimalField(max_digits=6, decimal_places=2)
     # source = models.CharField(max_length=25)
     source = models.ForeignKey('currency.Source', on_delete=models.CASCADE, related_name='rates')
 
@@ -29,6 +29,7 @@ class ContactUs(models.Model):
 class Source(models.Model):
     source_url = models.CharField(max_length=255)
     name = models.CharField(max_length=64)
+    code_name = models.CharField(max_length=64, unique=True)
 
     def logo_path(self):
         return f"{self.name}.jpeg"
