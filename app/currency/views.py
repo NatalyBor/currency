@@ -1,7 +1,7 @@
 # from django.shortcuts import render, get_object_or_404
 # from django.contrib.auth import get_user_model
 # from django.contrib.auth.forms import PasswordResetForm
-from django.conf import settings
+# from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 # from django.contrib.auth.tokens import default_token_generator
 # from django.contrib.auth.views import PasswordContextMixin

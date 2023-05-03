@@ -69,7 +69,7 @@ def parse_monobank():
     }
 
     for rate in rates:
-        if rate["currencyCodeA"] not in available_currency  or rate["currencyCodeB"] != 980:
+        if rate["currencyCodeA"] not in available_currency or rate["currencyCodeB"] != 980:
             continue
         buy = rate["rateBuy"]
         sale = rate["rateSell"]
