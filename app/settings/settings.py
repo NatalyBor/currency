@@ -174,7 +174,7 @@ if DEBUG:
 HOST = 'localhost:8000'
 HTTP_SCHEMA = 'http'
 
-#CELER
+# CELERY
 CELERY_BROKER_URL = "amqp://localhost"
 
 CELERY_BEAT_SCHEDULE = {

@@ -93,7 +93,7 @@ class ContactUsCreateView(CreateView):
     def _send_mail(self):
         # cleaned_data = form.cleaned_data
         subject = 'User ContactUs'
-        recipient = settings.DEFAULT_FROM_EMAIL
+        # recipient = settings.DEFAULT_FROM_EMAIL
         message = f'''
             Request from: {self.object.name},
             Reply to email: {self.object.email},
@@ -104,7 +104,7 @@ class ContactUsCreateView(CreateView):
         # send_mail.delay(subject, message)
         # from datetime import datetime, timedelta
         send_mail.apply_async(
-            kwargs={'subject': subject,'message': message},
+            kwargs={'subject': subject, 'message': message},
 
             # eta=datetime.now() + timedelta(seconds=10),
             countdown=20
