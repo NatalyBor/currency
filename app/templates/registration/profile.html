@@ -1,13 +1,21 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block title %}
      Profile
 {% endblock title %}
 
 {% block content %}
-    Update Profile
-
-    <form method="post">
+    Update Profile <br>
+<!--    {% if object.avatar %}-->
+<!--        <img src="{{ object.avatar.url }}" width="250" height="350">-->
+<!--    {% else %}-->
+<!--        <img src="{% static 'anonymous-avatar.png' %}" alt="">-->
+<!--    {% endif %}-->
+    <img src="{{ object.avatar_url }}  " width="200" height="250">
+    {% load crispy_forms_tags %}
+    <form method="post" enctype="multipart/form-data">
         {%  csrf_token %}
         {{ form.as_p }}
         <button type="submit">Submit</button>

@@ -2,7 +2,7 @@
 
 {% block style %}
         table, th, td
-        {border: 1px solid black}
+        {border: None}
 {% endblock style %}
 
 {% block title %}
@@ -10,21 +10,24 @@
 {% endblock title %}
 
 {% block content %}
-<a href="/source/create">Create</a><br>
-<table>
+<a href="/source/create">Create</a><br><br>
+<table class="table table-striped">
     <thead>
-        <th>ID</th>
-        <th>Source_url</th>
-        <th>Source_name</th>
-        <th>Update</th>
+        <th scope="col">ID</th>
+        <th scope="col">Source_url</th>
+        <th scope="col">Source_name</th>
+        <th scope="col">Update</th>
+        <th scope="col">logo</th>
     </thead>
     <tbody>
+
     {% for source in object_list %}
     <tr>
         <td>{{ source.id }}</td>
         <td>{{ source.source_url }}</td>
         <td>{{ source.name }}</td>
         <td><a href="{% url 'currency:source-update' source.id %}">UPDATE</a></td>
+        <td><img src= '/media/logos/{{source.logo_path}}'  width="30" heith="30"></td>
 
     </tr>
     {% endfor %}

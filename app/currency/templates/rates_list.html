@@ -2,7 +2,7 @@
 
 {% block style %}
         table, th, td
-        {border: 1px solid black}
+        {border: None}
 {% endblock style %}
 
 {% block title %}
@@ -10,31 +10,62 @@
 {% endblock title %}
 
 {% block content %}
-<a href="{% url 'currency:rate-create'%}">Create</a><br>
-<table>
+<a href="{% url 'currency:rate-create'%}">Create</a><br><br>
+
+<div  class="row col-12">
+
+<table class="table table-striped">
     <thead>
-        <th>ID</th>
-        <th>Buy</th>
-        <th>Sell</th>
-        <th>Currency</th>
-        <th>Update</th>
-        <th>Delete</th>
-        <th>Details</th>
+      <tr>
+          <th scope="col">#</th>
+          <th scope="col">ID</th>
+          <th scope="col">Buy</th>
+          <th scope="col">Sell</th>
+          <th scope="col">Currency</th>
+          <th scope="col">Source</th>
+          <th scope="col">Actions</th>
+
+      </tr>
     </thead>
+    <tfoot>
+    <tr>
+
+        <td colspan="5">Actual currency rates </td>
+    </tr>
+
+    </tfoot>
     <tbody>
     {% for rate in object_list %}
     <tr>
+        <th scope="row">{{ forloop.counter }}</th>
         <td>{{ rate.id }}</td>
         <td>{{ rate.buy }}</td>
         <td>{{ rate.sell }}</td>
         <td>{{ rate.get_currency_display }}</td>
-        <td><a href="{% url 'currency:rate-update' rate.id %}">UPDATE</a></td>
-        <td><a href="{% url 'currency:rate-delete' rate.id %}">DELETE</a></td>
-        <td><a href="{% url 'currency:rate-details' rate.id %}">DETAILS</a></td>
+        <td>{{ rate.source }}</td>
+
+        <td>
+
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Action
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{% url 'currency:rate-update' rate.id %}">UPDATE</a></li>
+                    <li><a class="dropdown-item" href="{% url 'currency:rate-delete' rate.id %}">DELETE</a></li>
+                    <li><a class="dropdown-item" href="{% url 'currency:rate-details' rate.id %}">DETAILS</a></li>
+                 </ul>
+            </div>
+
+<!--            <a href="{% url 'currency:rate-update' rate.id %}">UPDATE</a>-->
+<!--            <a href="{% url 'currency:rate-delete' rate.id %}">DELETE</a>-->
+<!--            <a href="{% url 'currency:rate-details' rate.id %}">DETAILS</a>-->
+        </td>
     </tr>
     {% endfor %}
     </tbody>
 </table>
+</div>
+
 {% endblock content %}
 
 

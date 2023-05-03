@@ -1,6 +1,6 @@
 # from django.shortcuts import render, get_object_or_404
 from django.conf import settings
-from django.contrib.auth import get_user_model
+# from django.contrib.auth import get_user_model
 # from django.contrib.auth.forms import PasswordResetForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 # from django.contrib.auth.tokens import default_token_generator
@@ -131,18 +131,18 @@ class SourceUpdateView(UpdateView):
     queryset = Source.objects.all()
 
 
-class ProfileView(LoginRequiredMixin, UpdateView):
-    template_name = 'registration/profile.html'
-    success_url = reverse_lazy('index')
-    # model = get_user_model()
-    queryset = get_user_model().objects.all()
-    fields = (
-        'first_name',
-        'last_name',
-    )
-
-    def get_object(self, queryset=None):
-        return self.request.user
+# class ProfileView(LoginRequiredMixin, UpdateView):
+#     template_name = 'registration/profile.html'
+#     success_url = reverse_lazy('index')
+#     # model = get_user_model()
+#     queryset = get_user_model().objects.all()
+#     fields = (
+#         'first_name',
+#         'last_name',
+#     )
+#
+#     def get_object(self, queryset=None):
+#         return self.request.user
 
     # def get_queryset(self):
     #     queryset = super().get_queryset()
