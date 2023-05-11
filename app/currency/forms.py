@@ -8,7 +8,7 @@ class RateForm(forms.ModelForm):
         model = Rate
         fields = (
             'buy',
-            'sell',
+            'sale',
             'source',
             'currency',
         )
@@ -20,4 +20,5 @@ class SourceForm(forms.ModelForm):
         fields = (
             'source_url',
             'name',
+            'code_name',
         )

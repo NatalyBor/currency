@@ -1,14 +1,13 @@
 # from django.shortcuts import render, get_object_or_404
-from django.conf import settings
 # from django.contrib.auth import get_user_model
 # from django.contrib.auth.forms import PasswordResetForm
+# from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 # from django.contrib.auth.tokens import default_token_generator
 # from django.contrib.auth.views import PasswordContextMixin
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView, TemplateView
 # from django.http import HttpResponse, HttpResponseRedirect, Http404
-
 from currency.models import Rate, ContactUs, Source
 from currency.forms import RateForm, SourceForm
 
@@ -87,25 +86,38 @@ class ContactUsCreateView(CreateView):
         'message',
     )
 
+    # def _slow(self):
+    #     from time import sleep
+    #     sleep(10)
+
     def _send_mail(self):
         # cleaned_data = form.cleaned_data
         subject = 'User ContactUs'
-        recipient = settings.DEFAULT_FROM_EMAIL
+        # recipient = settings.DEFAULT_FROM_EMAIL
         message = f'''
             Request from: {self.object.name},
             Reply to email: {self.object.email},
             Subject: {self.object.subject},
             Body: {self.object.message},
         '''
-        from django.core.mail import send_mail
+        from currency.tasks import send_mail
+        # send_mail.delay(subject, message)
+        # from datetime import datetime, timedelta
+        send_mail.apply_async(
+            kwargs={'subject': subject, 'message': message},
 
-        send_mail(
-            subject,
-            message,
-            recipient,
-            [recipient],
-            fail_silently=False,
+            # eta=datetime.now() + timedelta(seconds=10),
+            countdown=20
         )
+        # from django.core.mail import send_mail
+        # self._slow()
+        # send_mail(
+        #     subject,
+        #     message,
+        #     recipient,
+        #     [recipient],
+        #     fail_silently=False,
+        # )
 
     def form_valid(self, form):
         redirect = super().form_valid(form)
@@ -158,7 +170,7 @@ class SourceUpdateView(UpdateView):
 
 # result = []
 # for rate in qs:
-#     result.append(f'id: {rate.id}, buy: {rate.buy}, sell: {rate.sell}, currency: {rate.currency}, source: {rate.source}, created: {rate.created}<br>')
+#     result.append(f'id: {rate.id}, buy: {rate.buy}, sale: {rate.sale}, currency: {rate.currency}, source: {rate.source}, created: {rate.created}<br>')
 # return HttpResponse(str(result))
 
 # get details

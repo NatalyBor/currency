@@ -10,7 +10,7 @@ class RateAdmin(ImportExportModelAdmin):
     list_display = (
         'id',
         'buy',
-        'sell',
+        'sale',
         'created',
         'currency',
         'source',
@@ -22,11 +22,11 @@ class RateAdmin(ImportExportModelAdmin):
     search_fields = (
         'source',
         'buy',
-        'sell',
+        'sale',
     )
     # readonly_fields = (
     #     'buy',
-    #     'sell',
+    #     'sale',
     # )
 
     # def has_delete_permission(self, request, obj=None):
