@@ -32,4 +32,3 @@ class User(AbstractUser):
         if self.avatar:
             return self.avatar.url
         return static('anonymous-avatar.png')
-

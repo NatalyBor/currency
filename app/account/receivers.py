@@ -11,9 +11,11 @@ def user_pre_save_signal(sender, instance, **kwargs):
     if instance.email:
         instance.email = instance.email.lower()
 
+
 @receiver(post_save, sender=User)
 def user_post_save_signal(sender, **kwargs):
     print("post_save")
+
 
 @receiver(pre_save, sender=User)
 def user_phone_pre_save_signal(sender, instance, **kwargs):
@@ -27,6 +29,7 @@ def user_phone_pre_save_signal(sender, instance, **kwargs):
                     phone = phone + _
             print('Phone: ', phone)
             instance.phone = int(phone)
+
 
 @receiver(post_save, sender=User)
 def user_phone_post_save_signal(sender, **kwargs):
