@@ -6,4 +6,5 @@ class AccountConfig(AppConfig):
     name = 'account'
 
     def ready(self):
+        # noinspection PyUnresolvedReferences
         import account.receivers
