@@ -11,6 +11,13 @@
 
 {% block content %}
 <a href="/source/create">Create</a><br><br>
+
+<form method="get">
+        {{ filter.form.as_p }}
+        <input type="submit" />
+    </form>
+<br>
+
 <table class="table table-striped">
     <thead>
         <th scope="col">ID</th>
@@ -33,4 +40,7 @@
     {% endfor %}
     </tbody>
 </table>
+
+{%include "includes/pagination.html"%}
+
 {% endblock content %}
