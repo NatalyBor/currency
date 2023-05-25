@@ -13,6 +13,8 @@ from currency.views import (
     ContactUsCreateView,
 )
 
+# from currency.views import rates_list
+
 app_name = 'currency'
 
 urlpatterns = [
@@ -23,6 +25,10 @@ urlpatterns = [
     path('rate/update/<int:pk>/', RateUpdateView.as_view(), name='rate-update'),
     path('rate/delete/<int:pk>/', RateDeleteView.as_view(), name='rate-delete'),
     path('rate/details/<int:pk>/', RateDetailView.as_view(), name='rate-details'),
+
+    # Test view url to demonstrate
+    # path('rates/', rates_list),
+
     path('source/list', SourceListView.as_view(), name='source-list'),
     path('source/create', SourceCreateView.as_view(), name='source-create'),
     path('source/update/<int:pk>/', SourceUpdateView.as_view(), name='source-update'),

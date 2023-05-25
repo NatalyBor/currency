@@ -2,7 +2,10 @@
 # from django.contrib.auth import get_user_model
 # from django.contrib.auth.forms import PasswordResetForm
 # from django.conf import settings
+import json
+
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.http import HttpResponse
 # from django.contrib.auth.tokens import default_token_generator
 # from django.contrib.auth.views import PasswordContextMixin
 from django.urls import reverse_lazy
@@ -16,6 +19,8 @@ from currency.filters import RateFilter
 from currency.filters import SourceFilter
 
 from currency.filters import ContactUsFilter
+
+# from app.settings import settings
 
 
 class RateListView(FilterView):
@@ -46,14 +51,15 @@ class RateDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
     def test_func(self):
         return self.request.user.is_authenticated
 
-    # def dispatch(self, request, *args, **kwargs):
-    #     print('before')
-    #     start = time()
-    #     result = super().dispatch(request, *args, **kwargs)
-    #     print('after')
-    #     end = time()
-    #     print(f'time: {end - start}')
-    #     return result
+
+# def dispatch(self, request, *args, **kwargs):
+#     print('before')
+#     start = time()
+#     result = super().dispatch(request, *args, **kwargs)
+#     print('after')
+#     end = time()
+#     print(f'time: {end - start}')
+#     return result
 
 
 class RateCreateView(CreateView):
@@ -126,7 +132,7 @@ class ContactUsCreateView(CreateView):
             Subject: {self.object.subject},
             Body: {self.object.message},
         '''
-        from currency.tasks import send_mail
+        from app.currency.tasks import send_mail
         # send_mail.delay(subject, message)
         # from datetime import datetime, timedelta
         send_mail.apply_async(
@@ -135,20 +141,34 @@ class ContactUsCreateView(CreateView):
             # eta=datetime.now() + timedelta(seconds=10),
             countdown=20
         )
-        # from django.core.mail import send_mail
-        # self._slow()
-        # send_mail(
-        #     subject,
-        #     message,
-        #     recipient,
-        #     [recipient],
-        #     fail_silently=False,
-        # )
+
+    # from django.core.mail import send_mail
+    # self._slow()
+    # send_mail(
+    #     subject,
+    #     message,
+    #     recipient,
+    #     [recipient],
+    #     fail_silently=False,
+    # )
 
     def form_valid(self, form):
         redirect = super().form_valid(form)
         self._send_mail()
         return redirect
+
+
+# Test view to demonstrate api request
+def rates_list(request):
+    rates = Rate.objects.all()
+    object_list = []
+    for rate in rates:
+        object_list.append({
+            'id': rate.id,
+            'buy': float(rate.buy),
+            'sale': float(rate.sale)
+        })
+    return HttpResponse(json.dumps(object_list), content_type='application/json')
 
 
 class SourceListView(FilterView):
