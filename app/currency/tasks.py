@@ -1,10 +1,11 @@
 from celery import shared_task
-from django.conf import settings
+# from django.conf import settings
 from currency.choices import RateCurrencyChoices
 from currency.constants import PRIVATBANK_CODE_NAME
 from currency.constants import MONOBANK_CODE_NAME
 from currency.utils import to_2_point_decimal
 import requests
+from app.settings import settings
 
 
 @shared_task
@@ -98,8 +99,8 @@ def send_mail(subject, message):
     raise ConnectionError
     recipient = settings.DEFAULT_FROM_EMAIL
     from django.core.mail import send_mail
-    from time import sleep
-    sleep(10)
+    # from time import sleep
+    # sleep(10)
     send_mail(
         subject,
         message,
