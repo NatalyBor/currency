@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'bootstrap4',
     'crispy_forms',
     'crispy_bootstrap4',
+    'django_filters',
 
     'main',
     'currency',

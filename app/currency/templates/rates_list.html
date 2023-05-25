@@ -12,6 +12,12 @@
 {% block content %}
 <a href="{% url 'currency:rate-create'%}">Create</a><br><br>
 
+    <form method="get">
+        {{ filter.form.as_p }}
+        <input type="submit" />
+    </form>
+<br>
+
 <div  class="row col-12">
 
 <table class="table table-striped">
@@ -35,7 +41,7 @@
 
     </tfoot>
     <tbody>
-    {% for rate in object_list %}
+    {% for rate in page_obj %}
     <tr>
         <th scope="row">{{ forloop.counter }}</th>
         <td>{{ rate.id }}</td>
@@ -65,6 +71,29 @@
     </tbody>
 </table>
 </div>
+
+<!--<div class="row">-->
+<!--    <div class="pagination">-->
+<!--        <span class="step-links">-->
+<!--            {% if page_obj.has_previous %}-->
+<!--                <a href="?page=1">&laquo; first</a>-->
+<!--                <a href="?page={{ page_obj.previous_page_number }}">previous</a>-->
+<!--            {% endif %}-->
+
+<!--            <span class="current">-->
+<!--                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.-->
+<!--            </span>-->
+
+<!--            {% if page_obj.has_next %}-->
+<!--                <a href="?page={{ page_obj.next_page_number }}">next</a>-->
+<!--                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>-->
+<!--            {% endif %}-->
+<!--        </span>-->
+<!--    </div>-->
+
+<!--</div>-->
+
+{%include "includes/pagination.html"%}
 
 {% endblock content %}
 

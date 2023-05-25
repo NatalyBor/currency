@@ -6,15 +6,31 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 # from django.contrib.auth.tokens import default_token_generator
 # from django.contrib.auth.views import PasswordContextMixin
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView, TemplateView
+from django.views.generic import CreateView, DetailView, UpdateView, DeleteView, TemplateView
 # from django.http import HttpResponse, HttpResponseRedirect, Http404
 from currency.models import Rate, ContactUs, Source
 from currency.forms import RateForm, SourceForm
+from django_filters.views import FilterView
+
+from currency.filters import RateFilter
+from currency.filters import SourceFilter
+
+from currency.filters import ContactUsFilter
 
 
-class RateListView(ListView):
+class RateListView(FilterView):
     template_name = 'rates_list.html'
     queryset = Rate.objects.all().select_related('source')
+    paginate_by = 10
+    filterset_class = RateFilter
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filter_pagination'] = '&'.join(
+            f'{key}={value}' for key, value in self.request.GET.items() if key != 'page'
+
+        )
+        return context
 
     def dispatch(self, request, *args, **kwargs):
         # print('before in view')
@@ -69,9 +85,19 @@ class IndexView(TemplateView):
     template_name = 'index.html'
 
 
-class ContactListView(ListView):
+class ContactListView(FilterView):
     template_name = 'contact_us.html'
     queryset = ContactUs.objects.all()
+    paginate_by = 10
+    filterset_class = ContactUsFilter
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filter_pagination'] = '&'.join(
+            f'{key}={value}' for key, value in self.request.GET.items() if key != 'page'
+
+        )
+        return context
 
 
 class ContactUsCreateView(CreateView):
@@ -125,9 +151,17 @@ class ContactUsCreateView(CreateView):
         return redirect
 
 
-class SourceListView(ListView):
+class SourceListView(FilterView):
     template_name = 'source_list.html'
     queryset = Source.objects.all()
+    paginate_by = 10
+    filterset_class = SourceFilter
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filter_pagination'] = '&'.join(
+            f'{key}={value}' for key, value in self.request.GET.items() if key != 'page')
+        return context
 
 
 class SourceCreateView(CreateView):
@@ -142,7 +176,6 @@ class SourceUpdateView(UpdateView):
     success_url = reverse_lazy('currency:source-list')
     queryset = Source.objects.all()
 
-
 # class ProfileView(LoginRequiredMixin, UpdateView):
 #     template_name = 'registration/profile.html'
 #     success_url = reverse_lazy('index')
@@ -156,10 +189,10 @@ class SourceUpdateView(UpdateView):
 #     def get_object(self, queryset=None):
 #         return self.request.user
 
-    # def get_queryset(self):
-    #     queryset = super().get_queryset()
-    #     queryset = queryset.filter(id=self.request.user.id)
-    #     return queryset
+# def get_queryset(self):
+#     queryset = super().get_queryset()
+#     queryset = queryset.filter(id=self.request.user.id)
+#     return queryset
 # def list_rates(request):
 #     rates = Rate.objects.all()
 #     context = {
