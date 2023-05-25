@@ -7,4 +7,4 @@ class AccountConfig(AppConfig):
 
     def ready(self):
         # noinspection PyUnresolvedReferences
-        import account.receivers
+        import account.receivers  # noqa: F401
