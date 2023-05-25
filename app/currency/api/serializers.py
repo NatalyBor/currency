@@ -1,4 +1,4 @@
-from django.urls import reverse
+# from django.urls import reverse
 from django.utils import timezone
 from rest_framework import serializers
 
@@ -6,7 +6,7 @@ from currency.models import Rate, Source, ContactUs
 
 from django.core.mail import send_mail
 
-from app.settings import settings
+# from app.settings import settings
 
 
 class RateSerializer(serializers.ModelSerializer):
@@ -47,7 +47,6 @@ class ContactUsSerializer(serializers.Serializer):
             'message'
         )
 
-
     def create(self, validated_data):
         instance = ContactUs.objects.create(**validated_data)
         send_mail(
@@ -64,6 +63,6 @@ class ContactUsSerializer(serializers.Serializer):
         instance.subject = validated_data.get('subject', instance.subject)
         instance.message = validated_data.get('message', instance.message)
         instance.created = validated_data.get('created', instance.created)
-        send_mail(instance.subject, instance.message,instance.email, ['to@example.com'])
+        send_mail(instance.subject, instance.message, instance.email, ['to@example.com'])
         instance.save()
         return instance

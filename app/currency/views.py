@@ -20,36 +20,36 @@ from currency.filters import SourceFilter
 
 from currency.filters import ContactUsFilter
 
-from app.settings import settings
+# from app.settings import settings
 
 
 class RateListView(FilterView):
-	template_name = 'rates_list.html'
-	queryset = Rate.objects.all().select_related('source')
-	paginate_by = 10
-	filterset_class = RateFilter
+    template_name = 'rates_list.html'
+    queryset = Rate.objects.all().select_related('source')
+    paginate_by = 10
+    filterset_class = RateFilter
 
-	def get_context_data(self, **kwargs):
-		context = super().get_context_data(**kwargs)
-		context['filter_pagination'] = '&'.join(
-			f'{key}={value}' for key, value in self.request.GET.items() if key != 'page'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filter_pagination'] = '&'.join(
+            f'{key}={value}' for key, value in self.request.GET.items() if key != 'page'
 
-		)
-		return context
+        )
+        return context
 
-	def dispatch(self, request, *args, **kwargs):
-		# print('before in view')
-		result = super().dispatch(request, *args, **kwargs)
-		# print('after in view')
-		return result
+    def dispatch(self, request, *args, **kwargs):
+        # print('before in view')
+        result = super().dispatch(request, *args, **kwargs)
+        # print('after in view')
+        return result
 
 
 class RateDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
-	queryset = Rate.objects.all()
-	template_name = 'rates_details.html'
+    queryset = Rate.objects.all()
+    template_name = 'rates_details.html'
 
-	def test_func(self):
-		return self.request.user.is_authenticated
+    def test_func(self):
+        return self.request.user.is_authenticated
 
 
 # def dispatch(self, request, *args, **kwargs):
@@ -63,138 +63,138 @@ class RateDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
 
 
 class RateCreateView(CreateView):
-	form_class = RateForm
-	template_name = 'rates_create.html'
-	success_url = reverse_lazy('currency:rate-list')
+    form_class = RateForm
+    template_name = 'rates_create.html'
+    success_url = reverse_lazy('currency:rate-list')
 
 
 class RateUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
-	form_class = RateForm
-	template_name = 'rates_update.html'
-	success_url = reverse_lazy('currency:rate-list')
-	queryset = Rate.objects.all()
+    form_class = RateForm
+    template_name = 'rates_update.html'
+    success_url = reverse_lazy('currency:rate-list')
+    queryset = Rate.objects.all()
 
-	def test_func(self):
-		return self.request.user.is_superuser
+    def test_func(self):
+        return self.request.user.is_superuser
 
 
 class RateDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
-	queryset = Rate.objects.all()
-	template_name = 'rates_delete.html'
-	success_url = reverse_lazy('currency:rate-list')
+    queryset = Rate.objects.all()
+    template_name = 'rates_delete.html'
+    success_url = reverse_lazy('currency:rate-list')
 
-	def test_func(self):
-		return self.request.user.is_superuser
+    def test_func(self):
+        return self.request.user.is_superuser
 
 
 class IndexView(TemplateView):
-	template_name = 'index.html'
+    template_name = 'index.html'
 
 
 class ContactListView(FilterView):
-	template_name = 'contact_us.html'
-	queryset = ContactUs.objects.all()
-	paginate_by = 10
-	filterset_class = ContactUsFilter
+    template_name = 'contact_us.html'
+    queryset = ContactUs.objects.all()
+    paginate_by = 10
+    filterset_class = ContactUsFilter
 
-	def get_context_data(self, **kwargs):
-		context = super().get_context_data(**kwargs)
-		context['filter_pagination'] = '&'.join(
-			f'{key}={value}' for key, value in self.request.GET.items() if key != 'page'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filter_pagination'] = '&'.join(
+            f'{key}={value}' for key, value in self.request.GET.items() if key != 'page'
 
-		)
-		return context
+        )
+        return context
 
 
 class ContactUsCreateView(CreateView):
-	template_name = 'contactus_create.html'
-	success_url = reverse_lazy('index')
-	model = ContactUs
-	fields = (
-		'created',
-		'name',
-		'email',
-		'subject',
-		'message',
-	)
+    template_name = 'contactus_create.html'
+    success_url = reverse_lazy('index')
+    model = ContactUs
+    fields = (
+        'created',
+        'name',
+        'email',
+        'subject',
+        'message',
+    )
 
-	# def _slow(self):
-	#     from time import sleep
-	#     sleep(10)
+    # def _slow(self):
+    #     from time import sleep
+    #     sleep(10)
 
-	def _send_mail(self):
-		# cleaned_data = form.cleaned_data
-		subject = 'User ContactUs'
-		# recipient = settings.DEFAULT_FROM_EMAIL
-		message = f'''
+    def _send_mail(self):
+        # cleaned_data = form.cleaned_data
+        subject = 'User ContactUs'
+        # recipient = settings.DEFAULT_FROM_EMAIL
+        message = f'''
             Request from: {self.object.name},
             Reply to email: {self.object.email},
             Subject: {self.object.subject},
             Body: {self.object.message},
         '''
-		from app.currency.tasks import send_mail
-		# send_mail.delay(subject, message)
-		# from datetime import datetime, timedelta
-		send_mail.apply_async(
-			kwargs={'subject': subject, 'message': message},
+        from app.currency.tasks import send_mail
+        # send_mail.delay(subject, message)
+        # from datetime import datetime, timedelta
+        send_mail.apply_async(
+            kwargs={'subject': subject, 'message': message},
 
-			# eta=datetime.now() + timedelta(seconds=10),
-			countdown=20
-		)
+            # eta=datetime.now() + timedelta(seconds=10),
+            countdown=20
+        )
 
-	# from django.core.mail import send_mail
-	# self._slow()
-	# send_mail(
-	#     subject,
-	#     message,
-	#     recipient,
-	#     [recipient],
-	#     fail_silently=False,
-	# )
+    # from django.core.mail import send_mail
+    # self._slow()
+    # send_mail(
+    #     subject,
+    #     message,
+    #     recipient,
+    #     [recipient],
+    #     fail_silently=False,
+    # )
 
-	def form_valid(self, form):
-		redirect = super().form_valid(form)
-		self._send_mail()
-		return redirect
+    def form_valid(self, form):
+        redirect = super().form_valid(form)
+        self._send_mail()
+        return redirect
 
 
 # Test view to demonstrate api request
 def rates_list(request):
-	rates = Rate.objects.all()
-	object_list = []
-	for rate in rates:
-		object_list.append({
-			'id': rate.id,
-			'buy': float(rate.buy),
-			'sale': float(rate.sale)
-		})
-	return HttpResponse(json.dumps(object_list), content_type='application/json')
+    rates = Rate.objects.all()
+    object_list = []
+    for rate in rates:
+        object_list.append({
+            'id': rate.id,
+            'buy': float(rate.buy),
+            'sale': float(rate.sale)
+        })
+    return HttpResponse(json.dumps(object_list), content_type='application/json')
 
 
 class SourceListView(FilterView):
-	template_name = 'source_list.html'
-	queryset = Source.objects.all()
-	paginate_by = 10
-	filterset_class = SourceFilter
+    template_name = 'source_list.html'
+    queryset = Source.objects.all()
+    paginate_by = 10
+    filterset_class = SourceFilter
 
-	def get_context_data(self, **kwargs):
-		context = super().get_context_data(**kwargs)
-		context['filter_pagination'] = '&'.join(
-			f'{key}={value}' for key, value in self.request.GET.items() if key != 'page')
-		return context
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filter_pagination'] = '&'.join(
+            f'{key}={value}' for key, value in self.request.GET.items() if key != 'page')
+        return context
 
 
 class SourceCreateView(CreateView):
-	form_class = SourceForm
-	template_name = 'source_create.html'
-	success_url = reverse_lazy('currency:source-list')
+    form_class = SourceForm
+    template_name = 'source_create.html'
+    success_url = reverse_lazy('currency:source-list')
 
 
 class SourceUpdateView(UpdateView):
-	form_class = SourceForm
-	template_name = 'source_update.html'
-	success_url = reverse_lazy('currency:source-list')
-	queryset = Source.objects.all()
+    form_class = SourceForm
+    template_name = 'source_update.html'
+    success_url = reverse_lazy('currency:source-list')
+    queryset = Source.objects.all()
 
 # class ProfileView(LoginRequiredMixin, UpdateView):
 #     template_name = 'registration/profile.html'

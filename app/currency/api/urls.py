@@ -1,4 +1,4 @@
-from django.urls import path
+# from django.urls import path
 # from currency.api.views import RateApiView, RateDetailApiView
 
 from rest_framework.routers import DefaultRouter
@@ -17,9 +17,9 @@ router.register(r'sources', SourceViewSet, basename='sources')
 router.register(r'contactus', ContactUsViewSet, basename='sources')
 
 urlpatterns = [
-	# path('rates/', hello_world),
-	# path('rates/', RateApiView.as_view(), name='rates'),
-	# path('rates/<int:pk>/', RateDetailApiView.as_view(), name='rates-detail')
+    # path('rates/', hello_world),
+    # path('rates/', RateApiView.as_view(), name='rates'),
+    # path('rates/<int:pk>/', RateDetailApiView.as_view(), name='rates-detail')
 ]
 
 urlpatterns += router.urls
