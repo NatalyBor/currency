@@ -18,7 +18,7 @@ def test_get_rate_list(client):
     assert response.status_code == 200
 
 
-def test_get_rate_list(client):
+def test_get_auth_list(client):
     response = client.get('/auth/login/')
     assert response.status_code == 200
 

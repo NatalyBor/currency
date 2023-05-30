@@ -65,7 +65,6 @@ def parse_monobank():
 
     url = 'https://api.monobank.ua/bank/currency'
     response = requests.get(url)
-    breakpoint()
     response.raise_for_status()
     rates = response.json()
 
