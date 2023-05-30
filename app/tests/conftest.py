@@ -1,6 +1,7 @@
 import pytest
-from django.core.management import call_command
+# from django.core.management import call_command
 from rest_framework.test import APIClient
+
 
 @pytest.fixture(autouse=True, scope="function")
 def enable_db_access_to_all_tests(db):
@@ -9,6 +10,7 @@ def enable_db_access_to_all_tests(db):
     :param db:
     :return:
     """
+
 
 @pytest.fixture()
 def api_client():
