@@ -2,6 +2,7 @@ def test_get_api_rate_list(api_client):
     response = api_client.get('/api/currency/rates/')
     assert response.status_code == 200
 
+
 def test_post_api_rate_list(api_client):
     response = api_client.post('/api/currency/rates/')
     assert response.status_code == 400

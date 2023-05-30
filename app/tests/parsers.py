@@ -8,7 +8,7 @@ from currency.tasks import parse_monobank
 
 def test_privatbank_parser(mocker):
     initial_account = Rate.objects.count()
-    privat_data = [{"ccy": "EUR", "base_ccy": "UAH", "buy": "39.26000", "sale": "40.81633"}, {"ccy":"USD","base_ccy": "UAH","buy": "36.56860", "sale": "37.45318"}]
+    privat_data = [{"ccy": "EUR", "base_ccy": "UAH", "buy": "39.26000", "sale": "40.81633"}, {"ccy": "USD", "base_ccy": "UAH", "buy": "36.56860", "sale": "37.45318"}]
     request_get_mock = mocker.patch(
         'requests.get',
         return_value=MagicMock(
