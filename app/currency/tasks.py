@@ -40,7 +40,7 @@ def parse_privatbank():
             source=source
         ).order_by('created').last()
 
-        if last_rate.buy != buy or last_rate.sale != sale:
+        if last_rate is None or last_rate.buy != buy or last_rate.sale != sale:
             Rate.objects.create(
                 buy=buy,
                 sale=sale,
@@ -65,6 +65,7 @@ def parse_monobank():
 
     url = 'https://api.monobank.ua/bank/currency'
     response = requests.get(url)
+    breakpoint()
     response.raise_for_status()
     rates = response.json()
 
@@ -81,7 +82,7 @@ def parse_monobank():
             source=source
             ).order_by('created').last()
 
-        if last_rate.buy != buy or last_rate.sale != sale:
+        if last_rate is None or last_rate.buy != buy or last_rate.sale != sale:
             Rate.objects.create(
                 buy=buy,
                 sale=sale,
@@ -96,7 +97,7 @@ def parse_monobank():
 # 	from time import sleep
 # 	sleep(10)
 def send_mail(subject, message):
-    raise ConnectionError
+    # raise ConnectionError
     recipient = settings.DEFAULT_FROM_EMAIL
     from django.core.mail import send_mail
     # from time import sleep

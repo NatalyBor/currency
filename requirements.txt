@@ -19,3 +19,9 @@ flake8-print
 django_debug_toolbar
 
 Currency~=0.1.2
+
+# pytest
+pytest
+pytest-django
+pytest-cov
+pytest-mock
