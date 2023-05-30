@@ -1,0 +1,452 @@
+[
+  {
+    "model": "currency.source",
+    "pk": 1,
+    "fields": {
+      "source_url": "pb@example.com",
+      "name": "PrivatBank",
+      "code_name": "privatbank"
+    }
+  },
+  {
+    "model": "currency.source",
+    "pk": 2,
+    "fields": {
+      "source_url": "mono@example.com",
+      "name": "MonoBank",
+      "code_name": "monobank"
+    }
+  },
+  {
+    "model": "currency.source",
+    "pk": 3,
+    "fields": {
+      "source_url": "",
+      "name": "1",
+      "code_name": "1"
+    }
+  },
+  {
+    "model": "currency.source",
+    "pk": 4,
+    "fields": {
+      "source_url": "0Bank@example.com",
+      "name": "0Bank",
+      "code_name": "0bank"
+    }
+  },
+  {
+    "model": "currency.source",
+    "pk": 5,
+    "fields": {
+      "source_url": "1Bank@example.com",
+      "name": "1Bank",
+      "code_name": "1bank"
+    }
+  },
+  {
+    "model": "currency.source",
+    "pk": 6,
+    "fields": {
+      "source_url": "2Bank@example.com",
+      "name": "2Bank",
+      "code_name": "2bank"
+    }
+  },
+  {
+    "model": "currency.source",
+    "pk": 7,
+    "fields": {
+      "source_url": "3Bank@example.com",
+      "name": "3Bank",
+      "code_name": "3bank"
+    }
+  },
+  {
+    "model": "currency.source",
+    "pk": 8,
+    "fields": {
+      "source_url": "4Bank@example.com",
+      "name": "4Bank",
+      "code_name": "4bank"
+    }
+  },
+  {
+    "model": "currency.source",
+    "pk": 9,
+    "fields": {
+      "source_url": "5Bank@example.com",
+      "name": "5Bank",
+      "code_name": "5bank"
+    }
+  },
+  {
+    "model": "currency.source",
+    "pk": 10,
+    "fields": {
+      "source_url": "6Bank@example.com",
+      "name": "6Bank",
+      "code_name": "6bank"
+    }
+  },
+  {
+    "model": "currency.source",
+    "pk": 11,
+    "fields": {
+      "source_url": "7Bank@example.com",
+      "name": "7Bank",
+      "code_name": "7bank"
+    }
+  },
+  {
+    "model": "currency.source",
+    "pk": 12,
+    "fields": {
+      "source_url": "8Bank@example.com",
+      "name": "8Bank",
+      "code_name": "8bank"
+    }
+  },
+  {
+    "model": "currency.source",
+    "pk": 13,
+    "fields": {
+      "source_url": "9Bank@example.com",
+      "name": "9Bank",
+      "code_name": "9bank"
+    }
+  },
+  {
+    "model": "currency.source",
+    "pk": 14,
+    "fields": {
+      "source_url": "10Bank@example.com",
+      "name": "10Bank",
+      "code_name": "10bank"
+    }
+  },
+  {
+    "model": "currency.source",
+    "pk": 15,
+    "fields": {
+      "source_url": "11Bank@example.com",
+      "name": "11Bank",
+      "code_name": "11bank"
+    }
+  },
+  {
+    "model": "currency.source",
+    "pk": 16,
+    "fields": {
+      "source_url": "12Bank@example.com",
+      "name": "12Bank",
+      "code_name": "12bank"
+    }
+  },
+  {
+    "model": "currency.source",
+    "pk": 17,
+    "fields": {
+      "source_url": "13Bank@example.com",
+      "name": "13Bank",
+      "code_name": "13bank"
+    }
+  },
+  {
+    "model": "currency.source",
+    "pk": 18,
+    "fields": {
+      "source_url": "14Bank@example.com",
+      "name": "14Bank",
+      "code_name": "14bank"
+    }
+  },
+  {
+    "model": "currency.source",
+    "pk": 19,
+    "fields": {
+      "source_url": "15Bank@example.com",
+      "name": "15Bank",
+      "code_name": "15bank"
+    }
+  },
+  {
+    "model": "currency.source",
+    "pk": 20,
+    "fields": {
+      "source_url": "16Bank@example.com",
+      "name": "16Bank",
+      "code_name": "16bank"
+    }
+  },
+  {
+    "model": "currency.source",
+    "pk": 21,
+    "fields": {
+      "source_url": "17Bank@example.com",
+      "name": "17Bank",
+      "code_name": "17bank"
+    }
+  },
+  {
+    "model": "currency.source",
+    "pk": 22,
+    "fields": {
+      "source_url": "18Bank@example.com",
+      "name": "18Bank",
+      "code_name": "18bank"
+    }
+  },
+  {
+    "model": "currency.source",
+    "pk": 23,
+    "fields": {
+      "source_url": "19Bank@example.com",
+      "name": "19Bank",
+      "code_name": "19bank"
+    }
+  },
+  {
+    "model": "currency.source",
+    "pk": 24,
+    "fields": {
+      "source_url": "20Bank@example.com",
+      "name": "20Bank",
+      "code_name": "20bank"
+    }
+  },
+  {
+    "model": "currency.source",
+    "pk": 25,
+    "fields": {
+      "source_url": "21Bank@example.com",
+      "name": "21Bank",
+      "code_name": "21bank"
+    }
+  },
+  {
+    "model": "currency.source",
+    "pk": 26,
+    "fields": {
+      "source_url": "22Bank@example.com",
+      "name": "22Bank",
+      "code_name": "22bank"
+    }
+  },
+  {
+    "model": "currency.source",
+    "pk": 27,
+    "fields": {
+      "source_url": "23Bank@example.com",
+      "name": "23Bank",
+      "code_name": "23bank"
+    }
+  },
+  {
+    "model": "currency.source",
+    "pk": 28,
+    "fields": {
+      "source_url": "24Bank@example.com",
+      "name": "24Bank",
+      "code_name": "24bank"
+    }
+  },
+  {
+    "model": "currency.source",
+    "pk": 29,
+    "fields": {
+      "source_url": "25Bank@example.com",
+      "name": "25Bank",
+      "code_name": "25bank"
+    }
+  },
+  {
+    "model": "currency.source",
+    "pk": 30,
+    "fields": {
+      "source_url": "26Bank@example.com",
+      "name": "26Bank",
+      "code_name": "26bank"
+    }
+  },
+  {
+    "model": "currency.source",
+    "pk": 31,
+    "fields": {
+      "source_url": "27Bank@example.com",
+      "name": "27Bank",
+      "code_name": "27bank"
+    }
+  },
+  {
+    "model": "currency.source",
+    "pk": 32,
+    "fields": {
+      "source_url": "28Bank@example.com",
+      "name": "28Bank",
+      "code_name": "28bank"
+    }
+  },
+  {
+    "model": "currency.source",
+    "pk": 33,
+    "fields": {
+      "source_url": "29Bank@example.com",
+      "name": "29Bank",
+      "code_name": "29bank"
+    }
+  },
+  {
+    "model": "currency.source",
+    "pk": 34,
+    "fields": {
+      "source_url": "30Bank@example.com",
+      "name": "30Bank",
+      "code_name": "30bank"
+    }
+  },
+  {
+    "model": "currency.source",
+    "pk": 35,
+    "fields": {
+      "source_url": "31Bank@example.com",
+      "name": "31Bank",
+      "code_name": "31bank"
+    }
+  },
+  {
+    "model": "currency.source",
+    "pk": 36,
+    "fields": {
+      "source_url": "32Bank@example.com",
+      "name": "32Bank",
+      "code_name": "32bank"
+    }
+  },
+  {
+    "model": "currency.source",
+    "pk": 37,
+    "fields": {
+      "source_url": "33Bank@example.com",
+      "name": "33Bank",
+      "code_name": "33bank"
+    }
+  },
+  {
+    "model": "currency.source",
+    "pk": 38,
+    "fields": {
+      "source_url": "34Bank@example.com",
+      "name": "34Bank",
+      "code_name": "34bank"
+    }
+  },
+  {
+    "model": "currency.source",
+    "pk": 39,
+    "fields": {
+      "source_url": "35Bank@example.com",
+      "name": "35Bank",
+      "code_name": "35bank"
+    }
+  },
+  {
+    "model": "currency.source",
+    "pk": 40,
+    "fields": {
+      "source_url": "36Bank@example.com",
+      "name": "36Bank",
+      "code_name": "36bank"
+    }
+  },
+  {
+    "model": "currency.source",
+    "pk": 41,
+    "fields": {
+      "source_url": "37Bank@example.com",
+      "name": "37Bank",
+      "code_name": "37bank"
+    }
+  },
+  {
+    "model": "currency.source",
+    "pk": 42,
+    "fields": {
+      "source_url": "38Bank@example.com",
+      "name": "38Bank",
+      "code_name": "38bank"
+    }
+  },
+  {
+    "model": "currency.source",
+    "pk": 43,
+    "fields": {
+      "source_url": "39Bank@example.com",
+      "name": "39Bank",
+      "code_name": "39bank"
+    }
+  },
+  {
+    "model": "currency.source",
+    "pk": 44,
+    "fields": {
+      "source_url": "40Bank@example.com",
+      "name": "40Bank",
+      "code_name": "40bank"
+    }
+  },
+  {
+    "model": "currency.source",
+    "pk": 45,
+    "fields": {
+      "source_url": "41Bank@example.com",
+      "name": "41Bank",
+      "code_name": "41bank"
+    }
+  },
+  {
+    "model": "currency.source",
+    "pk": 46,
+    "fields": {
+      "source_url": "42Bank@example.com",
+      "name": "42Bank",
+      "code_name": "42bank"
+    }
+  },
+  {
+    "model": "currency.source",
+    "pk": 47,
+    "fields": {
+      "source_url": "43Bank@example.com",
+      "name": "43Bank",
+      "code_name": "43bank"
+    }
+  },
+  {
+    "model": "currency.source",
+    "pk": 48,
+    "fields": {
+      "source_url": "44Bank@example.com",
+      "name": "44Bank",
+      "code_name": "44bank"
+    }
+  },
+  {
+    "model": "currency.source",
+    "pk": 49,
+    "fields": {
+      "source_url": "45Bank@example.com",
+      "name": "45Bank",
+      "code_name": "45bank"
+    }
+  },
+  {
+    "model": "currency.source",
+    "pk": 50,
+    "fields": {
+      "source_url": "46Bank@example.com",
+      "name": "46Bank",
+      "code_name": "46bank"
+    }
+  }
+  ]
